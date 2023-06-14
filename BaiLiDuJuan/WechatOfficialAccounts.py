@@ -27,7 +27,7 @@ headers = {
 }
 
 BAILIDUJUAN_NICKNAME_1 = "百里杜鹃"
-BAILIDUJUAN_1_OUT_PATH = "./out/百里杜鹃"
+BAILIDUJUAN_1_OUT_PATH = "./out/BaiLiDuJuan"
 STATIC_RESOURCE_PATH = "static"
 
 def md5(x):
