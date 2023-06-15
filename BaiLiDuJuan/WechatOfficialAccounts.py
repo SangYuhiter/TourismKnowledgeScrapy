@@ -13,7 +13,10 @@ import re
 import hashlib
 import requests
 import time
+import sys
 from bs4 import BeautifulSoup
+
+sys.path.append("..")
 from BasicInternetConnect import get_headers
 
 WECHAT_MAIN_PAGE_URL = "https://mp.weixin.qq.com"
@@ -21,13 +24,15 @@ WECHAT_SEARCH_PAGE_URL = "https://mp.weixin.qq.com/cgi-bin/searchbiz"
 WECHAT_ARTICLES_PAGE_URL = "https://mp.weixin.qq.com/cgi-bin/appmsg"
 headers = {
     "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/112.0.0.0 Safari/537.36",
-    "Cookie": "appmsglist_action_3946503740=card; pac_uid=0_07feff2fa75e3; iip=0; pgv_pvid=1936248458; logTrackKey=e35157d2c7ec47a7a1ef5ff6246052ec; ua_id=4bpZ1czqYPI99twGAAAAACHpbCj7bRAT3xxAi9PPv1U=; wxuin=85875017099003; rewardsn=; wxtokenkey=777; uuid=d07ca0b3207f7b7831e17b653a9940d0; cert=dBebXfGZL9zpD16VcAxZmCeszcoPu1NP; sig=h01d03b9a7514b1d714ea70e689147171721d0c649b9e0ed7768252e715f51b535d6b4ac40b891916e2; data_bizuin=3946503740; bizuin=3946503740; master_user=gh_22b9ae63fe96; master_sid=MEZBR01FQ204R1h4S09kcVJPMVdUR003Q0czbmU1ak5tWUtFSUlDbDYwMVQ5QmJSU0ZlcnRyWVJvM3N2TzBHaW83Qm9xNkJRMDV0NnloWTVfXzN4YmhxUWF1MWxyME1RT09TRHBaQ3JnV2xFajUzOVNQdDBNMWtBaDF5R2N1bTRraFRDZjBvdm5ocEtncXZY; master_ticket=c2d5f5626421ce5c0a45d574fc0058b1; media_ticket=e2487039808a5c7e8c498f644aad4032cc7336bc; media_ticket_id=3946503740; data_ticket=2BpBuRH/rOq20dkQZJ1miLDRbrMS/BqGWKfzq9JrL1b9gTyI5CB2k8DzI0NGY8ja; rand_info=CAESIM7uWpCug9gIigBAmwKfD+RNkQdjGRD0thJmF0iP0LQ1; slave_bizuin=3946503740; slave_user=gh_22b9ae63fe96; slave_sid=YjlOa2V4c2Z3N3JETWMzcTVrMmI5WXZIZ3llRjBXT0Z5ZGNQdVhqV09FR0JoV0dCblNfN25OUkNZU0xwanpWQ0RmekRZeU5HQ0lmRFRSTTlFaUtNWnFWWkkwMXNYMVpkcGFMTWdad2ZGTjNtZkc4ZzlaQWUxYVNTcHpTMlJrZUtPR1NES3hwNjE2SlRwZnh1; _clck=3946503740|1|fcc|0; _clsk=1xzn02j|1686408619952|8|1|mp.weixin.qq.com/weheat-agent/payload/record",
+    "Cookie": "appmsglist_action_3946503740=card; pac_uid=0_07feff2fa75e3; iip=0; pgv_pvid=1936248458; logTrackKey=e35157d2c7ec47a7a1ef5ff6246052ec; ua_id=4bpZ1czqYPI99twGAAAAACHpbCj7bRAT3xxAi9PPv1U=; wxuin=85875017099003; uuid=01963f8a2f172d8099e676cd355f1bc5; rand_info=CAESIOZ0e4Ix9TcbdZIERBrv75rpGOBlPk+aqQLZVi+yA4QT; slave_bizuin=3946503740; data_bizuin=3946503740; bizuin=3946503740; data_ticket=sS0/LtkhOfEvhDi5Knr06pckBTy7cdAPBNaKiTmksCrGLtT4J4NUROMq2N1lWLmt; slave_sid=ZGFnMW9CMXhjcW52M0pvSGMyM0ZEbTlBazZBSFhoQnp1X0tmTjlsYWxPcEVaNHZNWTY1TldDX1BFcFhfRlF3eUpaZnM1RThLZGJSbVludlJSSzFMWlJxREwxOGxObWZydHVya3RUWDIzcHFuOUFZVGRjSHVKNnR1cGdUR0lnT1dGOUlaSUptWHlsZ2ZmSmJZ; slave_user=gh_22b9ae63fe96; xid=da6fa6653543f08916f95bd32b884acf; mm_lang=zh_CN; _clck=3946503740|1|fcg|0; _clsk=1jq81kf|1686701030535|1|1|mp.weixin.qq.com/weheat-agent/payload/record",
     "Host": "mp.weixin.qq.com",
     "Referer": "https://mp.weixin.qq.com/"
 }
 
 BAILIDUJUAN_NICKNAME_1 = "百里杜鹃"
 BAILIDUJUAN_1_OUT_PATH = "./out/BaiLiDuJuan"
+BAILIDUJUAN_NICKNAME_2 = "贵州百里杜鹃旅游"
+BAILIDUJUAN_2_OUT_PATH = "./out/GuiZhouBaiLiDuJuanLvYou"
 STATIC_RESOURCE_PATH = "static"
 
 def md5(x):
@@ -69,8 +74,8 @@ def get_wechat_information(nickname, store_path):
 
             # get article link
             page_size = 5
-            page_count = 165
-            current_page = 148
+            page_count = 1
+            current_page = 1
             while current_page <= page_count:
                 data = {
                     "action": "list_ex",
@@ -104,7 +109,7 @@ def get_wechat_information(nickname, store_path):
                         post_date = time.strftime("%Y-%m-%d", time.localtime(int(item['update_time'])))
                         table = str.maketrans('\\|/?><:*"：“”', '------------')
                         title = item['title'].strip().translate(table)
-                        article_name = os.path.join(BAILIDUJUAN_1_OUT_PATH, "[%s]%s.html" % (post_date, title))
+                        article_name = os.path.join(store_path, "[%s]%s.html" % (post_date, title))
                         res = s.get(url=article_link, headers=get_headers())
                         if res.status_code == 200:
                             article_soup = BeautifulSoup(res.text, "lxml")
@@ -151,6 +156,22 @@ def get_main_information():
         os.makedirs(resource_path_1)
     get_wechat_information(BAILIDUJUAN_NICKNAME_1, BAILIDUJUAN_1_OUT_PATH)
 
+    resource_path_2 = os.path.join(BAILIDUJUAN_2_OUT_PATH, STATIC_RESOURCE_PATH)
+    if not os.path.exists(resource_path_2):
+        os.makedirs(resource_path_2)
+    get_wechat_information(BAILIDUJUAN_NICKNAME_2, BAILIDUJUAN_2_OUT_PATH)
+
+
+def format_file_name(store_dir):
+    files = [file for file in os.listdir(store_dir) if "html" in file]
+    print(len(files))
+    for file in files:
+        table = str.maketrans('\\|/?><:*"：“”', '------------')
+        old_file = os.path.join(BAILIDUJUAN_1_OUT_PATH, file)
+        new_file = os.path.join(file.strip().translate(table))
+        # os.rename()
 
 if __name__ == "__main__":
-    get_main_information()
+    # get_main_information()
+    format_file_name(BAILIDUJUAN_1_OUT_PATH)
+    format_file_name(BAILIDUJUAN_2_OUT_PATH)
