@@ -167,9 +167,9 @@ def format_file_name(store_dir):
     print(len(files))
     for file in files:
         table = str.maketrans('\\|/?><:*"：“”', '------------')
-        old_file = os.path.join(BAILIDUJUAN_1_OUT_PATH, file)
-        new_file = os.path.join(file.strip().translate(table))
-        # os.rename()
+        old_file = os.path.join(store_dir, file)
+        new_file = os.path.join(store_dir, file.strip().translate(table))
+        os.rename(old_file, new_file)
 
 if __name__ == "__main__":
     # get_main_information()
