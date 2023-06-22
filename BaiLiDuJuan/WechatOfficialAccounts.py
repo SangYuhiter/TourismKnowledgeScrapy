@@ -108,7 +108,7 @@ def get_wechat_information(nickname, store_path):
                     for item in app_msg_list:
                         article_link = item['link']
                         post_date = time.strftime("%Y-%m-%d", time.localtime(int(item['update_time'])))
-                        table = str.maketrans('\\|/?><:*"：“”', '------------')
+                        table = str.maketrans('\\|/?><:*"：“”\n', '-------------')
                         title = item['title'].strip().translate(table)
                         article_name = os.path.join(store_path, "[%s]%s.html" % (post_date, title))
                         res = s.get(url=article_link, headers=get_headers())
@@ -171,12 +171,12 @@ def format_file_name(store_dir):
     files = [file for file in os.listdir(store_dir) if "html" in file]
     print(len(files))
     for file in files:
-        table = str.maketrans('\\|/?><:*"：“”', '------------')
+        table = str.maketrans('\\|/?><:*"：“”\n', '-------------')
         old_file = os.path.join(store_dir, file)
         new_file = os.path.join(store_dir, file.strip().translate(table))
         os.rename(old_file, new_file)
 
 if __name__ == "__main__":
-    get_main_information()
+    # get_main_information()
     # format_file_name(BAILIDUJUAN_1_OUT_PATH)
-    # format_file_name(BAILIDUJUAN_2_OUT_PATH)
+    format_file_name(BAILIDUJUAN_2_OUT_PATH)
