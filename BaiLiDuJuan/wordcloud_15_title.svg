@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080">
+<style>text{font-family:'FangSong';font-weight:normal;font-style:normal;}</style>
+<rect width="100%" height="100%" style="fill:white"></rect>
+<text transform="translate(295,990)" font-size="423" style="fill:rgb(192, 223, 37)">防控</text>
+<text transform="translate(1485,914) rotate(-90)" font-size="363" style="fill:rgb(234, 229, 26)">方案</text>
+<text transform="translate(69,489)" font-size="327" style="fill:rgb(55, 91, 141)">肺炎</text>
+<text transform="translate(1838,990) rotate(-90)" font-size="327" style="fill:rgb(52, 96, 141)">第九版</text>
+<text transform="translate(941,614) rotate(-90)" font-size="286" style="fill:rgb(189, 223, 38)">新冠</text>
+<text transform="translate(1005,199)" font-size="238" style="fill:rgb(39, 127, 142)">应知</text>
+<text transform="translate(205,1041) rotate(-90)" font-size="238" style="fill:rgb(31, 158, 137)">应会</text>
+<text transform="translate(273,158)" font-size="178" style="fill:rgb(165, 219, 54)">上班</text>
+<text transform="translate(1191,1038)" font-size="178" style="fill:rgb(251, 231, 35)">权威</text>
+<text transform="translate(1134,585) rotate(-90)" font-size="178" style="fill:rgb(92, 200, 99)">指南</text>
+<text transform="translate(3,127)" font-size="154" style="fill:rgb(105, 205, 91)">新型</text>
+<text transform="translate(228,623)" font-size="118" style="fill:rgb(68, 2, 86)">冠状病毒</text>
+<text transform="translate(1433,639)" font-size="118" style="fill:rgb(31, 158, 137)">相关</text>
+<text transform="translate(1528,1056)" font-size="97" style="fill:rgb(72, 40, 120)">问题解答</text>
+<text transform="translate(1070,681)" font-size="97" style="fill:rgb(157, 217, 59)">一图</text>
+<text transform="translate(5,266)" font-size="97" style="fill:rgb(71, 42, 122)">懂</text>
+<text transform="translate(1561,367)" font-size="97" style="fill:rgb(41, 122, 142)">事关</text>
+<text transform="translate(1087,852)" font-size="97" style="fill:rgb(58, 186, 118)">紧急</text>
+<text transform="translate(724,1043) rotate(-90)" font-size="97" style="fill:rgb(35, 138, 141)">措施</text>
+<text transform="translate(324,1054) rotate(-90)" font-size="97" style="fill:rgb(37, 133, 142)">抗原</text>
+<text transform="translate(1667,698)" font-size="81" style="fill:rgb(72, 26, 108)">最新版</text>
+<text transform="translate(618,704)" font-size="81" style="fill:rgb(99, 203, 95)">发布</text>
+</svg>
